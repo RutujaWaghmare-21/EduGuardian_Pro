@@ -40,7 +40,7 @@ Aggregates individual data into district-level intelligence, enabling policy-mak
 
 ## ⚙️ Installation & Setup
 ### Clone the Repository  
-git clone https://github.com/YOUR_USERNAME/EduGuardian_Pro_v2.git  
+git clone https://github.com/RutujaWaghmare-21/EduGuardian_Pro  
 cdd EduGuardian_Pro 
 ### Install Dependencies  
 pip install -r requirements.txt  
