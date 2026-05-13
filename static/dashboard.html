@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><title>Institutional Intelligence | EduGuardian</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-950 text-white p-12">
+    <header class="flex justify-between items-center mb-12 border-b border-white/5 pb-10">
+        <div><h1 class="text-4xl font-black italic text-indigo-500 tracking-tighter">Policy Intelligence</h1><p class="text-slate-500 text-sm">Real-time educational dropout monitoring node.</p></div>
+        <a href="/" class="px-8 py-3 bg-slate-900 rounded-full border border-white/10 uppercase font-black text-[10px] tracking-widest">Back to Pulse Input</a>
+    </header>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 text-center">
+        <div class="bg-slate-900 p-8 rounded-[2.5rem] border border-white/5">
+            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Total Analyzed</p>
+            <p id="totalCount" class="text-5xl font-black italic">0</p>
+        </div>
+        <div class="bg-slate-900 p-8 rounded-[2.5rem] border border-white/5">
+            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Critical Cases</p>
+            <p id="criticalCount" class="text-5xl font-black text-rose-500 italic">0</p>
+        </div>
+        <div class="bg-slate-900 p-8 rounded-[2.5rem] border border-white/5">
+            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">System Health</p>
+            <p class="text-5xl font-black text-emerald-500 italic">ACTIVE</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div class="bg-slate-900 p-10 rounded-[3rem] border border-white/5">
+            <h4 class="text-[10px] font-bold text-slate-500 uppercase mb-8 tracking-widest text-center">Live Risk Distribution</h4>
+            <div class="h-72"><canvas id="heatmapChart"></canvas></div>
+        </div>
+        <div class="bg-slate-900 p-10 rounded-[3rem] border border-white/5">
+            <h4 class="text-[10px] font-bold text-slate-500 uppercase mb-8 tracking-widest text-center">Recent Risk Velocity</h4>
+            <div class="h-72"><canvas id="velocityChart"></canvas></div>
+        </div>
+    </div>
+
+    <script>
+        async function loadLiveStats() {
+            const response = await fetch('/get_stats');
+            const data = await response.json();
+
+            document.getElementById('totalCount').innerText = data.total;
+            document.getElementById('criticalCount').innerText = data.risk_counts[0];
+
+            // 1. Dynamic Distribution Chart
+            new Chart(document.getElementById('heatmapChart'), {
+                type: 'polarArea',
+                data: {
+                    labels: ['Critical', 'Elevated', 'Stable'],
+                    datasets: [{
+                        data: data.risk_counts,
+                        backgroundColor: ['#f43f5e', '#fbbf24', '#10b981'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { 
+                    plugins: { legend: { position: 'right', labels: { color: 'white' } } },
+                    scales: { r: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { display: false } } }
+                }
+            });
+
+            // 2. Dynamic History Chart
+            new Chart(document.getElementById('velocityChart'), {
+                type: 'bar',
+                data: {
+                    labels: data.recent_probs.map((_, i) => `Case ${i+1}`),
+                    datasets: [{
+                        label: 'Risk %',
+                        data: data.recent_probs.map(p => p * 100),
+                        backgroundColor: '#6366f1',
+                        borderRadius: 12
+                    }]
+                },
+                options: {
+                    scales: { 
+                        y: { display: false, max: 100 }, 
+                        x: { grid: { display: false }, ticks: { color: 'rgba(255,255,255,0.3)' } } 
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+        loadLiveStats();
+    </script>
+</body>
+</html>
