@@ -1,0 +1,1 @@
+-- DPDP Secure Schema v2\nCREATE TABLE students_anonymized (\n    student_uuid UUID PRIMARY KEY,\n    risk_score FLOAT,\n    primary_driver VARCHAR(50),\n    prediction_narrative TEXT,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);
