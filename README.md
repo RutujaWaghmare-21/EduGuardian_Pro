@@ -52,9 +52,15 @@ Create a `.env` file in the root directory and add your cloud API credentials:
 GROQ_API_KEY=your_groq_api_key_here
 ```
 ### Install Dependencies  
-pip install -r requirements.txt  
+
+```plaintext
+pip install -r requirements.txt
+```
 ### Launch the Application  
+
+```plaintext
 python app.py  
+```
 ### Access the Interface  
 - Student Data Ingest Hub: [http://127.0.0.1:8000](http://127.0.0.1:8000)  
 - Admin Dashboard: [http://127.0.0.1:8000/static/dashboard.html](http://127.0.0.1:8000/static/dashboard.html)
