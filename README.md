@@ -9,13 +9,14 @@ EduGuardian Pro is an end-to-end AI solution designed to solve the "Diagnostic B
 ```
 EduGuardian_Pro/
 ├── static/
-│   ├── index.html       # Student-facing 'Pulse' Interface (Data Ingestion)
-│   └── dashboard.html   # Admin/Principal 'Intelligence' Dashboard (Visualization)
-├── app.py               # FastAPI Backend (Intersectionality Logic & API)
-├── model_engine.py      # AI Core (Random Forest/XGBoost & XAI Narratives)
-├── requirements.txt     # Python Dependencies
-├── schema.sql           # DPDP-Compliant Anonymized Database Schema
-└── README.md            # Project Documentation
+│   ├── index.html       # Student 'Pulse' Ingestion View
+│   └── dashboard.html   # Admin 'Intelligence' Console
+├── app.py               # Main FastAPI Application Engine (ML Inference & API Routing)
+├── eduguardian_rf.joblib # Trained Random Forest Model Weights
+├── scaler.joblib        # Scikit-learn Feature Scaling File
+├── eduguardian.db       # Persistent SQLite Database Storage (Auto-generated)
+├── .env                 # Local Environment Keys (Groq Cloud Storage)
+└── requirements.txt     # Python Architecture Dependencies
 ```
 
 ## 🚀 Key Features
@@ -25,15 +26,16 @@ Instead of static annual surveys, the system captures a real-time "Pulse" of stu
 2. **Socio-Academic Feature Intersection**  
 The AI doesn't just look at marks. It correlates data (e.g., Long Commute + Low Income) to identify high-risk students who might otherwise be invisible.
 
-3. **Explainable AI (XAI) Narratives**  
-No "black boxes." Every risk flag is accompanied by a human-readable story explaining the "Why," allowing mentors to provide empathetic, targeted support.
+3. **Explainable AI (XAI) Micro-Narratives**  
+Replaces corporate "black-box" guessing by isolating exact profile anomalies using local feature extraction weights.
 
-4. **Institutional Risk Heatmaps**  
-Aggregates individual data into district-level intelligence, enabling policy-makers to allocate budgets (e.g., bicycle grants or data packs) where they are needed most.
+4. **Groq Cloud Llama-3.1 Pipeline:**  
+Eliminates counselor writing fatigue by utilizing serverless inference to instantly write customized outreach text.
 
 ## 🛠️ Technical Stack
 - **Backend:** FastAPI (High-performance Python framework)
-- **Machine Learning:** Scikit-Learn (XGBoost/RandomForest Ensemble)
+- **Machine Learning:** Scikit-Learn (Ensembled Random Forest Engine)
+- **Generative AI Layer:** Groq SDK Ecosystem (Llama-3.1-8b Inference Pipeline)
 - **Data Handling:** Pandas & NumPy
 - **Frontend:** HTML5, CSS3 (Tailwind CSS), and Chart.js for live data visualization
 - **Privacy:** DPDP-aligned data anonymization protocols
@@ -42,12 +44,15 @@ Aggregates individual data into district-level intelligence, enabling policy-mak
 ### Clone the Repository  
 git clone https://github.com/RutujaWaghmare-21/EduGuardian_Pro  
 cdd EduGuardian_Pro 
+### Environment Configuration
+Create a .env file in the root directory and add your cloud API credentials:
+GROQ_API_KEY=your_groq_api_key_here
 ### Install Dependencies  
 pip install -r requirements.txt  
 ### Launch the Application  
 python app.py  
 ### Access the Interface  
-- Student Pulse: [http://127.0.0.1:8000](http://127.0.0.1:8000)  
+- Student Data Ingest Hub: [http://127.0.0.1:8000](http://127.0.0.1:8000)  
 - Admin Dashboard: [http://127.0.0.1:8000/static/dashboard.html](http://127.0.0.1:8000/static/dashboard.html)
 
 ## 🛡️ Ethical AI & Privacy
