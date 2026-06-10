@@ -44,9 +44,13 @@ Eliminates counselor writing fatigue by utilizing serverless inference to instan
 ### Clone the Repository  
 git clone https://github.com/RutujaWaghmare-21/EduGuardian_Pro  
 cdd EduGuardian_Pro 
-### Environment Configuration
-Create a .env file in the root directory and add your cloud API credentials:
+# Environment Configuration
+
+Create a `.env` file in the root directory and add your cloud API credentials:
+
+```plaintext
 GROQ_API_KEY=your_groq_api_key_here
+```
 ### Install Dependencies  
 pip install -r requirements.txt  
 ### Launch the Application  
