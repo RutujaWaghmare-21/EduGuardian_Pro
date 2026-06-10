@@ -2,3 +2,6 @@ fastapi
 uvicorn
 scikit-learn
 numpy
+joblib
+python-dotenv
+openai
