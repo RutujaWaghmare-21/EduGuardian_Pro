@@ -44,7 +44,7 @@ Eliminates counselor writing fatigue by utilizing serverless inference to instan
 ### Clone the Repository  
 git clone https://github.com/RutujaWaghmare-21/EduGuardian_Pro  
 cdd EduGuardian_Pro 
-# Environment Configuration
+### Environment Configuration
 
 Create a `.env` file in the root directory and add your cloud API credentials:
 
