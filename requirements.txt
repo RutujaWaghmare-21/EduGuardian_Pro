@@ -1,7 +1,9 @@
 fastapi
-uvicorn
+uvicorn[standard]
 scikit-learn
 numpy
 joblib
 python-dotenv
 openai
+pydantic
+python-multipart
